@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
-
+<%= @prediction.match.team_a.name %>
+<%= @prediction.score_a %> :
+<%= @prediction.score_b %>
+<%= @prediction.match.team_b.name %>
 <%= link_to 'Edit', edit_prediction_path(@prediction) %> |
 <%= link_to 'Back', predictions_path %>

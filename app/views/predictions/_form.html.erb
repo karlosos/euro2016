@@ -11,6 +11,17 @@
     </div>
   <% end %>
 
+  <%= hidden_field(:match_id, @match.id) %>
+  <div class="field">
+    <%= f.label :score_a %><br />
+    <%= f.number_field :score_a %>
+  </div>
+
+  <div class="field">
+    <%= f.label :score_b %><br />
+    <%= f.number_field :score_b %>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

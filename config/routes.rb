@@ -1,6 +1,15 @@
 Rails.application.routes.draw do
   root 'static_pages#home'
-  
+
+  get 'predictions' => 'predictions#index', as: :predictions
+  post 'predictions' => 'predictions#create'
+  get 'predictions/new/:match_id' => 'predictions#new', as: :new_prediction
+  get 'predictions/:id/edit' => 'predictions#edit', as: :edit_prediction
+  get 'predictions/:id' => 'predictions#show', as: :prediction
+  patch 'predictions/:id' => 'predictions#update'
+  put 'predictions/:id' => 'predictions#update'
+  delete 'predictions/:id' => 'predictions#destroy'
+
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

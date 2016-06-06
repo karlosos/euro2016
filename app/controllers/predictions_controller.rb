@@ -4,7 +4,7 @@ class PredictionsController < ApplicationController
   # GET /predictions
   # GET /predictions.json
   def index
-    @predictions = Prediction.all
+    @predictions = current_user.predictions
   end
 
   # GET /predictions/1
@@ -14,11 +14,13 @@ class PredictionsController < ApplicationController
 
   # GET /predictions/new
   def new
+    @match = Match.find(params[:match_id])
     @prediction = Prediction.new
   end
 
   # GET /predictions/1/edit
   def edit
+    @match = Prediction.find(params[:id]).match
   end
 
   # POST /predictions
