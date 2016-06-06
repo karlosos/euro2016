@@ -1,9 +1,34 @@
-<div class="center jumbotron">
-  <h1>Witaj w Euro 2016 Predictor©™</h1>
-
-  <h2>
-    Wystarczy się zarejestrować!
-  </h2>
-
-  <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
-</div>
+<% if user_signed_in? %>
+  <table class="matches table table-striped">
+    <thead class="thead-inverse">
+      <th class="left">Data</th>
+      <th class="left">Team A</th>
+      <th class="center" colspan="3">Wynik</th>
+      <th class="right">Team B</th>
+      <th class="center" colspan="3">Twój wynik</th>
+    </thead>
+    <tbody>
+      <% @Matches.each do |match| %>
+      <tr>
+        <td class="date left"><%= match.date %></td>
+        <td class="team_a left"><%= match.team_a.name %></td>
+        <td class="score_a right"><%= match.score_a %></td>
+        <td class="delimeter center">:</td>
+        <td class="score_b left"><%= match.score_b %></td>
+        <td class="team_b right"><%= match.team_b.name %></td>
+        <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: current_user.id).score_a %></td>
+        <td class="delimeter center">:</td>
+        <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: current_user.id).score_b %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="center jumbotron">
+    <h1>Witaj w Euro 2016 Predictor©™</h1>
+    <h2>
+      Wystarczy się zarejestrować!
+    </h2>
+    <%= link_to "Sign up now!", new_user_registration_path, class: "btn btn-lg btn-primary" %>
+  </div>
+<% end %>
