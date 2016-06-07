@@ -16,9 +16,17 @@
         <td class="delimeter center">:</td>
         <td class="score_b left"><%= match.score_b %></td>
         <td class="team_b right"><%= match.team_b.name %></td>
+        <% if match.predictions.find_by(user: current_user.id) %>
         <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: current_user.id).score_a %></td>
         <td class="delimeter center">:</td>
         <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: current_user.id).score_b %></td>
+        <% else %>
+          <form>
+            <td><input type="number"></input></td>
+            <td>:</td>
+            <td><input type="number"></input></td>
+          </form>
+        <% end %>
       </tr>
       <% end %>
     </tbody>
