@@ -175,6 +175,13 @@ input {
   height: auto !important;
 }
 
+.short {
+  input {
+    width: 30px;
+    margin-bottom: 0px;
+  }
+}
+
 
 /* table of matches */
 table {
@@ -199,4 +206,9 @@ table.matches {
     padding-left: 0px;
     padding-right: 0px;
   }
+}
+
+.flag {
+  margin-right: 5px;
+  margin-left: 5px;
 }

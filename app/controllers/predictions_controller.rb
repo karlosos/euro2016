@@ -5,8 +5,8 @@ class PredictionsController < ApplicationController
   # GET /predictions
   # GET /predictions.json
   def index
-    #@predictions = current_user.predictions
-    @predictions = Prediction.all
+    @predictions = current_user.predictions
+    #@predictions = Prediction.all
   end
 
   # GET /predictions/1
@@ -64,17 +64,17 @@ class PredictionsController < ApplicationController
     if params[:predictions]
       Prediction.update(params[:predictions].keys, params[:predictions].values)
       flash[:success] = "Predictions updated"
-      redirect_to root_url
+      redirect_to :back
     else
       flash[:notice] = "Nothing to update"
-      redirect_to root_url
+      redirect_to :back
     end
   end
 
   # DELETE /predictions/1
   # DELETE /predictions/1.json
   def destroy
-    if @prediction.user == current_user
+    if current_user.try(:admin?)
       @prediction.destroy
       respond_to do |format|
         format.html { redirect_to predictions_url, notice: 'Prediction was successfully destroyed.' }

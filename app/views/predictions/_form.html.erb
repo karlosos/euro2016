@@ -11,18 +11,18 @@
     </div>
   <% end %>
 
+  <div class="short">
   <%= hidden_field(:match_id, @match.id) %>
-  <div class="field">
-    <%= f.label :score_a %><br />
+    <%= f.label @match.team_a.name %>
+    <%= image_tag(@match.team_a.flag_url, class: "flag") %>
     <%= f.number_field :score_a %>
-  </div>
-
-  <div class="field">
-    <%= f.label :score_b %><br />
+    :
     <%= f.number_field :score_b %>
+    <%= image_tag(@match.team_b.flag_url, class: "flag") %>
+    <%= f.label @match.team_b.name %>
   </div>
-
   <div class="actions">
     <%= f.submit %>
   </div>
+
 <% end %>

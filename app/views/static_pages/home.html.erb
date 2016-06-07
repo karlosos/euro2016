@@ -10,13 +10,19 @@
   </thead>
   <tbody>
     <% @Matches.each do |match| %>
-    <tr>
+    <% time_difference = TimeDifference.between(DateTime.now, match.date).in_days %>
+    <% if time_difference < 1 %>
+      <% row_class = "danger" %>
+    <% elsif time_difference < 4 %>
+      <% row_class = "warning" %>
+    <% end %>
+    <tr class="<%= row_class %>">
       <td class="date left"><%= match.date %></td>
-      <td class="team_a left"><%= match.team_a.name %></td>
+      <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %><%= match.team_a.name %></td>
       <td class="score_a right"><%= match.score_a %></td>
       <td class="delimeter center">:</td>
       <td class="score_b left"><%= match.score_b %></td>
-      <td class="team_b right"><%= match.team_b.name %></td>
+      <td class="team_b right"><%= match.team_b.name %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
       <% prediction = match.predictions.find_by(user: current_user.id) %>
         <% if prediction && prediction.score_a? %>
         <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: current_user.id).score_a %></td>
