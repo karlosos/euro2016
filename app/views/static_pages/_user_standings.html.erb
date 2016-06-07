@@ -1,0 +1,12 @@
+<table class="table table-striped">
+  <thead class="thead-inverse">
+    <th class="left">Username</th>
+    <th class="left">Points</th>
+  </thead>
+  <tbody>
+    <% users.each do |user| %>
+      <td><%= user.username %></td>
+      <td><%= user.total_points %></td>
+    <% end %>
+  </tbody>
+</table>

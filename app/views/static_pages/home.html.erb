@@ -8,6 +8,9 @@
       <%= render 'user_last_matches', :matches => @LastMatches %>
       <%= render 'user_next_matches', :matches => @NextMatches %>
     </div>
+    <div class="col-md-3">
+      <%= render 'user_standings', :users => @BestUsers %>
+    </div>
   </div>
 <% else %>
   <div class="row">

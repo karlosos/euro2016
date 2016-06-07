@@ -14,6 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :predictions, dependent: :destroy
   scope :order_by_points, lambda { joins(:predictions).select('username, sum(predictions.points) as total_points').order('total_points desc') }
+
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -27,5 +28,9 @@ class User < ActiveRecord::Base
     if User.where(email: username).exists?
       errors.add(:username, :invalid)
     end
+  end
+
+  def predictions_points
+    return self.predictions.sum(:points)
   end
 end
