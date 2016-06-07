@@ -1,6 +1,7 @@
 class Prediction < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
+  before_update :prevent_update
 
   def update_points
     if self.match.finished?
@@ -44,5 +45,12 @@ class Prediction < ActiveRecord::Base
     else
       return false
     end
+  end
+
+
+  private
+  def prevent_update
+    return true if self.match.date > DateTime.now
+    false
   end
 end

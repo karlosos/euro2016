@@ -23,9 +23,12 @@ Rails.application.routes.draw do
   put 'matches/:id' => 'matches#update'
   delete 'matches/:id' => 'matches#destroy'
 
+  # Users
+  devise_for :users
+  get 'users/:username' => 'users#show', as: :user
   resources :teams
 
-  devise_for :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

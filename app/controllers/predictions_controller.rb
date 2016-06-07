@@ -27,6 +27,10 @@ class PredictionsController < ApplicationController
   # GET /predictions/1/edit
   def edit
     @match = Prediction.find(params[:id]).match
+    if @match.predictable? == false
+      flash[:error] = "You can't do that"
+      redirect_to :back
+    end
   end
 
   # POST /predictions
@@ -49,7 +53,7 @@ class PredictionsController < ApplicationController
   # PATCH/PUT /predictions/1.json
   def update
     respond_to do |format|
-      if @prediction.user == current_user
+      if @prediction.user == current_user && @match.predictable? == false
         if @prediction.update(prediction_params)
           format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
           format.json { render :show, status: :ok, location: @prediction }

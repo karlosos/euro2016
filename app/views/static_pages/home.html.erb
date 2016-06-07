@@ -4,18 +4,23 @@
 
 <% if user_signed_in? %>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-9">
+      <h2> Last matches </h2>
       <%= render 'user_last_matches', :matches => @LastMatches %>
+      <h2> Next matches </h2>
       <%= render 'user_next_matches', :matches => @NextMatches %>
     </div>
     <div class="col-md-3">
+      <h2> User standings </h2>
       <%= render 'user_standings', :users => @BestUsers %>
     </div>
   </div>
 <% else %>
   <div class="row">
-    <div class="col-md-5">
+    <div class="col-md-9">
+      <h2> Last matches </h2>
       <%= render 'matches', :matches => @LastMatches %>
+      <h2> Next matches </h2>
       <%= render 'matches', :matches => @NextMatches %>
     </div>
   </div>
