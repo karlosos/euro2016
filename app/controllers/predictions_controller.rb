@@ -1,10 +1,12 @@
 class PredictionsController < ApplicationController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /predictions
   # GET /predictions.json
   def index
-    @predictions = current_user.predictions
+    #@predictions = current_user.predictions
+    @predictions = Prediction.all
   end
 
   # GET /predictions/1
@@ -43,12 +45,17 @@ class PredictionsController < ApplicationController
   # PATCH/PUT /predictions/1.json
   def update
     respond_to do |format|
-      if @prediction.update(prediction_params)
-        format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
-        format.json { render :show, status: :ok, location: @prediction }
+      if @prediction.user == current_user
+        if @prediction.update(prediction_params)
+          format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
+          format.json { render :show, status: :ok, location: @prediction }
+        else
+          format.html { render :edit }
+          format.json { render json: @prediction.errors, status: :unprocessable_entity }
+        end
       else
-        format.html { render :edit }
-        format.json { render json: @prediction.errors, status: :unprocessable_entity }
+        flash[:error] = "You can't do that"
+        format.html { render :show }
       end
     end
   end
@@ -56,7 +63,7 @@ class PredictionsController < ApplicationController
   def update_multiple
     if params[:predictions]
       Prediction.update(params[:predictions].keys, params[:predictions].values)
-      flash[:notice] = "Predictions update"
+      flash[:success] = "Predictions updated"
       redirect_to root_url
     else
       flash[:notice] = "Nothing to update"
@@ -67,10 +74,17 @@ class PredictionsController < ApplicationController
   # DELETE /predictions/1
   # DELETE /predictions/1.json
   def destroy
-    @prediction.destroy
-    respond_to do |format|
-      format.html { redirect_to predictions_url, notice: 'Prediction was successfully destroyed.' }
-      format.json { head :no_content }
+    if @prediction.user == current_user
+      @prediction.destroy
+      respond_to do |format|
+        format.html { redirect_to predictions_url, notice: 'Prediction was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      respond_to do |format|
+        format.html { redirect_to predictions_url, alert: 'You can\'t do that.' }
+        format.json { render json: @prediction.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -82,6 +96,6 @@ class PredictionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.fetch(:prediction, {})
+      params.fetch(:prediction, {}).permit(:score_a, :score_b)
     end
 end

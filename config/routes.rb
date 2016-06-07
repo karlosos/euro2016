@@ -11,6 +11,9 @@ Rails.application.routes.draw do
   delete 'predictions/:id' => 'predictions#destroy'
   put 'update_multiple_predictions' => 'predictions#update_multiple'
 
+  resources :teams
+  resource :matches
+  
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

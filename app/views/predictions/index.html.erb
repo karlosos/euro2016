@@ -3,13 +3,18 @@
 <table class="matches table">
   <thead>
     <tr>
-      <th colspan="8"></th>
+      <th colspan="9"></th>
     </tr>
   </thead>
 
   <tbody>
     <% @predictions.each do |prediction| %>
       <tr>
+        <% if prediction.user == current_user %>
+          <td class="success"> <%= prediction.user.username %> </td>
+        <% else %>
+          <td> <%= prediction.user.username %> </td>
+        <% end %>
         <td> <%= prediction.match.team_a.name %> </td>
         <td> <%= prediction.score_a %></td>
         <td>:</td>
