@@ -1,11 +1,15 @@
 class PredictionsController < ApplicationController
   before_action :set_prediction, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   # GET /predictions
   # GET /predictions.json
   def index
-    @predictions = current_user.predictions
+    if current_user
+      @predictions = current_user.predictions
+    else
+      flash[:notice] = "You're not logged in"
+      redirect_to :root
+    end
     #@predictions = Prediction.all
   end
 

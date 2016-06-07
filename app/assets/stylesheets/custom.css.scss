@@ -44,6 +44,9 @@ input[type=submit] {
   @extend .btn-primary;
 }
 
+.full-width {
+  width: 100%;
+}
 /* typography */
 
 h1, h2, h3, h4, h5, h6 {
@@ -192,6 +195,7 @@ table.matches {
   margin: 0 auto;
   td {
     padding: 5px;
+    vertical-align: middle;
   }
   .center {
     text-align: center;
