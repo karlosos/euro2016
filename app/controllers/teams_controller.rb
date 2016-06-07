@@ -14,50 +14,76 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @team = Team.new
+    if current_user.try(:admin?)
+      @team = Team.new
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to :back
+    end
   end
 
   # GET /teams/1/edit
   def edit
+    if current_user.try(:admin?)
+      #GO TO EDIT
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to :back
+    end
   end
 
   # POST /teams
   # POST /teams.json
   def create
-    @team = Team.new(team_params)
+    if current_user.try(:admin?)
+      @team = Team.new(team_params)
 
-    respond_to do |format|
-      if @team.save
-        format.html { redirect_to @team, notice: 'Team was successfully created.' }
-        format.json { render :show, status: :created, location: @team }
-      else
-        format.html { render :new }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @team.save
+          format.html { redirect_to @team, notice: 'Team was successfully created.' }
+          format.json { render :show, status: :created, location: @team }
+        else
+          format.html { render :new }
+          format.json { render json: @team.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to :back
     end
   end
 
   # PATCH/PUT /teams/1
   # PATCH/PUT /teams/1.json
   def update
-    respond_to do |format|
-      if @team.update(team_params)
-        format.html { redirect_to @team, notice: 'Team was successfully updated.' }
-        format.json { render :show, status: :ok, location: @team }
-      else
-        format.html { render :edit }
-        format.json { render json: @team.errors, status: :unprocessable_entity }
+    if current_user.try(:admin?)
+      respond_to do |format|
+        if @team.update(team_params)
+          format.html { redirect_to @team, notice: 'Team was successfully updated.' }
+          format.json { render :show, status: :ok, location: @team }
+        else
+          format.html { render :edit }
+          format.json { render json: @team.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to :back
     end
   end
 
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
-    @team.destroy
-    respond_to do |format|
-      format.html { redirect_to teams_url, notice: 'Team was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.try(:admin?)
+      @team.destroy
+      respond_to do |format|
+        format.html { redirect_to :back, notice: 'Team was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to :back
     end
   end
 

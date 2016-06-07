@@ -1,6 +1,6 @@
 class MatchesController < ApplicationController
   before_action :set_match, only: [:show, :edit, :update, :destroy]
-
+  before_action :authenticate_user!
   # GET /matches
   # GET /matches.json
   def index
@@ -14,50 +14,75 @@ class MatchesController < ApplicationController
 
   # GET /matches/new
   def new
-    @match = Match.new
+    if current_user.try(:admin?)
+      @match = Match.new
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to root_url
+    end
   end
 
   # GET /matches/1/edit
   def edit
+    if current_user.try(:admin?)
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to root_url
+    end
   end
 
   # POST /matches
   # POST /matches.json
   def create
-    @match = Match.new(match_params)
+    if current_user.try(:admin?)
+      @match = Match.new(match_params)
 
-    respond_to do |format|
-      if @match.save
-        format.html { redirect_to @match, notice: 'Match was successfully created.' }
-        format.json { render :show, status: :created, location: @match }
-      else
-        format.html { render :new }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @match.save
+          format.html { redirect_to @match, notice: 'Match was successfully created.' }
+          format.json { render :show, status: :created, location: @match }
+        else
+          format.html { render :new }
+          format.json { render json: @match.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to root_url
     end
   end
 
   # PATCH/PUT /matches/1
   # PATCH/PUT /matches/1.json
   def update
-    respond_to do |format|
-      if @match.update(match_params)
-        format.html { redirect_to @match, notice: 'Match was successfully updated.' }
-        format.json { render :show, status: :ok, location: @match }
-      else
-        format.html { render :edit }
-        format.json { render json: @match.errors, status: :unprocessable_entity }
+    if current_user.try(:admin?)
+      respond_to do |format|
+        if @match.update(match_params)
+          format.html { redirect_to @match, notice: 'Match was successfully updated.' }
+          format.json { render :show, status: :ok, location: @match }
+        else
+          format.html { render :edit }
+          format.json { render json: @match.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to root_url
     end
   end
 
   # DELETE /matches/1
   # DELETE /matches/1.json
   def destroy
-    @match.destroy
-    respond_to do |format|
-      format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
-      format.json { head :no_content }
+    if current_user.try(:admin?)
+      @match.destroy
+      respond_to do |format|
+        format.html { redirect_to matches_url, notice: 'Match was successfully destroyed.' }
+        format.json { head :no_content }
+      end
+    else
+      flash[:error] = "You're now suppose to be there"
+      redirect_to root_url
     end
   end
 
