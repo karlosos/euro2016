@@ -1,0 +1,8 @@
+<%= fields_for 'predictions[]', prediction do |f| %>
+
+  <%= hidden_field(:match_id, match_id) %>
+  <td><%= f.number_field :score_a %></td>
+  <td>:</td>
+  <td><%= f.number_field :score_b %></td>
+
+<% end %>

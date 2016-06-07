@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   patch 'predictions/:id' => 'predictions#update'
   put 'predictions/:id' => 'predictions#update'
   delete 'predictions/:id' => 'predictions#destroy'
+  put 'update_multiple_predictions' => 'predictions#update_multiple'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

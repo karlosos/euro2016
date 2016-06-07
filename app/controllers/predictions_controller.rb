@@ -53,6 +53,17 @@ class PredictionsController < ApplicationController
     end
   end
 
+  def update_multiple
+    if params[:predictions]
+      Prediction.update(params[:predictions].keys, params[:predictions].values)
+      flash[:notice] = "Predictions update"
+      redirect_to root_url
+    else
+      flash[:notice] = "Nothing to update"
+      redirect_to root_url
+    end
+  end
+
   # DELETE /predictions/1
   # DELETE /predictions/1.json
   def destroy
