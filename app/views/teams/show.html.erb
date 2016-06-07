@@ -1,4 +1,5 @@
 <p id="notice"><%= notice %></p>
-
+<%= image_tag(@team.flag_url) %> <%= link_to @team.name, @team %>
+<br>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

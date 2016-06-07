@@ -35,6 +35,12 @@ textarea {
 }
 
 button {
+  @extend .btn;
+  @extend .btn-primary;
+}
+
+input[type=submit] {
+  @extend .btn;
   @extend .btn-primary;
 }
 

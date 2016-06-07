@@ -96,6 +96,6 @@ class PredictionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def prediction_params
-      params.fetch(:prediction, {}).permit(:score_a, :score_b)
+      params.fetch(:prediction, {}).permit(:score_a, :score_b, :user)
     end
 end
