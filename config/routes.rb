@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :admins
   root 'static_pages#home'
 
+  # Predictions
   get 'predictions' => 'predictions#index', as: :predictions
   post 'predictions' => 'predictions#create'
   get 'predictions/new/:match_id' => 'predictions#new', as: :new_prediction
@@ -12,8 +13,17 @@ Rails.application.routes.draw do
   delete 'predictions/:id' => 'predictions#destroy'
   put 'update_multiple_predictions' => 'predictions#update_multiple'
 
+  # Matches
+  get 'matches' => 'matches#index', as: :matches
+  post 'matches' => 'matches#create'
+  get 'matches/new' => 'matches#new', as: :new_match
+  get 'matches/:id/edit' => 'matches#edit', as: :edit_match
+  get 'matches/:id' => 'matches#show', as: :match
+  patch 'matches/:id' => 'matches#update'
+  put 'matches/:id' => 'matches#update'
+  delete 'matches/:id' => 'matches#destroy'
+
   resources :teams
-  resource :matches
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.

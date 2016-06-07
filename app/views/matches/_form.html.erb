@@ -11,6 +11,9 @@
     </div>
   <% end %>
 
+  <% teams_array = Team.all %>
+  <%= f.select :team_a_id, Team.all.collect {|team_a| [ team_a.name, team_a.id ] } %>
+  <%= f.select :team_b_id, Team.all.collect {|team_b| [ team_b.name, team_b.id ] } %>
   <div class="actions">
     <%= f.submit %>
   </div>

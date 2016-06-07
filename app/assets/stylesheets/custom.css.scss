@@ -166,7 +166,7 @@ aside {
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
-  width: 100%;
+  /*width: 100%;*/
   margin-bottom: 15px;
   @include box_sizing;
 }
@@ -175,7 +175,11 @@ input {
   height: auto !important;
 }
 
+
 /* table of matches */
+table {
+  @extend .table;
+}
 table.matches {
   width: 800px;
   margin: 0 auto;

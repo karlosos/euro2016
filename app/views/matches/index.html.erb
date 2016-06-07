@@ -10,6 +10,9 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
+        <td><%= match.date %></td>
+        <td><%= image_tag(match.team_a.flag_url) %> <%= match.team_a.name %></td>
+        <td><%= image_tag(match.team_b.flag_url) %> <%= match.team_b.name %></td>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607135739) do
+ActiveRecord::Schema.define(version: 20160607153431) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -32,13 +32,14 @@ ActiveRecord::Schema.define(version: 20160607135739) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "matches", force: true do |t|
-    t.date     "date"
-    t.integer  "team_a"
-    t.integer  "team_b"
+    t.datetime "date"
+    t.integer  "team_a_id"
+    t.integer  "team_b_id"
     t.integer  "score_a"
     t.integer  "score_b"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "stadium"
   end
 
   create_table "predictions", force: true do |t|
