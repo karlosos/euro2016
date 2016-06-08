@@ -10,7 +10,7 @@
   <tbody>
     <% @matches.each do |match| %>
       <tr>
-        <td><%= match.date %></td>
+        <td><%= match.date.in_time_zone("Poland") %></td>
         <td><%= image_tag(match.team_a.flag_url, class: "flag") %> <%= match.team_a.name %></td>
         <td><%= image_tag(match.team_b.flag_url, class: "flag") %> <%= match.team_b.name %></td>
         <td><%= link_to 'Show', match %></td>

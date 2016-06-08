@@ -31,7 +31,7 @@ class Match < ActiveRecord::Base
   end
 
   def get_result
-    if self.score_a.nil? || self.score_a.nil?
+    if self.score_a.nil? || self.score_b.nil?
       return nil
     elsif self.score_a > self.score_b
       return 1

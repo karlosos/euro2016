@@ -17,14 +17,14 @@
       <% row_class = "warning" %>
     <% end %>
     <tr class="<%= row_class %>">
-      <td class="date left"><%= match.date.strftime("%d %b. %Y %H:%M") %></td>
+      <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
       <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %> <%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
       <td class="score_a right"><%= match.score_a %></td>
       <td class="delimeter center">:</td>
       <td class="score_b left"><%= match.score_b %></td>
       <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
       <% prediction = match.predictions.find_by(user: @user.id) %>
-        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.match.predictable? == false %>
+        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.try(:match).try(:predictable?) == false %>
         <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: @user.id).score_a %></td>
         <td class="delimeter center">:</td>
         <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: @user.id).score_b %></td>
