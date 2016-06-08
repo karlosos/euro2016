@@ -3,8 +3,8 @@ class Prediction < ActiveRecord::Base
   belongs_to :match
   before_update :prevent_update, :if => :score_a_changed?
   before_update :prevent_update, :if => :score_b_changed?
-  validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
-  validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
+  validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
 
   def update_points
     if self.match.finished?

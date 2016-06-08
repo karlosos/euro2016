@@ -71,6 +71,11 @@ class PredictionsController < ApplicationController
   def update_multiple
     if params[:predictions]
       Prediction.update(params[:predictions].keys, params[:predictions].values)
+      # for prediction in params[:predictions]
+      #   if prediction.score_a.present? && prediction.score_b.present?
+      #     Prediction.update()
+      #   end
+      # end
       flash[:success] = "Predictions updated"
       redirect_to :back
     else

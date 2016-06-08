@@ -1,6 +1,6 @@
 <%= fields_for 'predictions[]', prediction do |f| %>
-
-  <%= hidden_field(:match_id, match_id) %>
+  <%= f.hidden_field :id, :value => prediction.id %>
+  <%= f.hidden_field :match_id, :value => match_id %>
   <td class="short right"><%= f.number_field :score_a, { min: 0 } %></td>
   <td>:</td>
   <td class="short left"><%= f.number_field :score_b, { min: 0 } %></td>
