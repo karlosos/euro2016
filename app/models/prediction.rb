@@ -1,7 +1,10 @@
 class Prediction < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
-  before_update :prevent_update
+  before_update :prevent_update, :if => :score_a_changed?
+  before_update :prevent_update, :if => :score_b_changed?
+  validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
+  validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0  }
 
   def update_points
     if self.match.finished?
@@ -12,7 +15,9 @@ class Prediction < ActiveRecord::Base
   private
 
   def get_points_for_prediction(prediction)
-    if check_if_equal_score?(prediction, prediction.match)
+    if !check_if_scores_are_supplied?(prediction)
+      return nil
+    elsif check_if_equal_score?(prediction, prediction.match)
       return 3
     elsif check_if_same_result?(prediction, prediction.match)
       return 1
@@ -47,6 +52,13 @@ class Prediction < ActiveRecord::Base
     end
   end
 
+  def check_if_scores_are_supplied?(prediction)
+    if prediction.score_a.present? && prediction.score_b.present?
+      return true
+    else
+      return false
+    end
+  end
 
   private
   def prevent_update

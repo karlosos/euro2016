@@ -1,9 +1,9 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  score_a: 1
-  score_b: 1
-
-two:
-  score_a: 1
-  score_b: 1
+# # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+#
+# one:
+#   score_a: 1
+#   score_b: 1
+#
+# two:
+#   score_a: 1
+#   score_b: 1
