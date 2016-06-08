@@ -3,9 +3,11 @@
   <% this_team = 2 %>
   <% this_team = 1 if match.team_a == @team %>
   <tr class="<%= get_row_class_for_team_and_result(this_team, match.get_result) %>">
-    <td><%= match.date.strftime("%d %b. %Y %H:%M") %></td>
+    <td>
+      <%= link_to match.date.strftime("%d %b. %Y %H:%M"), match_path(match.id) %>
+    </td>
     <td class="left">
-      <%= match.team_a.name %>
+      <%= link_to match.team_a.name, team_path(match.team_a.id) %>
     </td>
     <td class="right">
       <%= match.score_a %>
@@ -15,7 +17,7 @@
       <%= match.score_b %>
     </td>
     <td class="right">
-      <%= match.team_b.name %>
+      <%= link_to match.team_b.name, team_path(match.team_b.id) %>
     </td>
   </tr>
   <% end %>
