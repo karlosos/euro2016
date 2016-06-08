@@ -8,6 +8,12 @@
 
 User.create(email: "admin@admin.pl", username: "admin", password: "password", password_confirmation: "password", admin: true)
 
+User.create(email: "losowy_email@go.pl", username: "karol" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "alan@example.com", username: "alan" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "olaf@example.com", username: "olaf" , password: "password", password_confirmation: "password", admin: false)
+
 # Teams
 Team.create(name: 'Francja', flag_url:  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/22px-Flag_of_France.svg.png')
 Team.create(name: 'Czechy', flag_url:  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/22px-Flag_of_the_Czech_Republic.svg.png')
@@ -70,3 +76,8 @@ Match.create(date: DateTime.parse('21.06.2016 21:00:00+02:00'), team_a_id: Team.
 Match.create(date: DateTime.parse('22.06.2016 21:00:00+02:00'), team_a_id: Team.find_by(name:'Włochy').id, team_b_id: Team.find_by(name:'Irlandia').id, stadium: 'Stade Pierre-Mauroy, Lille')
 Match.create(date: DateTime.parse('22.06.2016 21:00:00+02:00'), team_a_id: Team.find_by(name:'Szwecja').id, team_b_id: Team.find_by(name:'Belgia').id, stadium: 'Allianz Riviera, Nicea')
 Match.create(date: DateTime.parse('22.06.2016 18:00:00+02:00'), team_a_id: Team.find_by(name:'Islandia').id, team_b_id: Team.find_by(name:'Austria').id, stadium: 'Stade de France, Saint-Denis')
+
+Prediction.create(match: Match.first, user: User.find(1), score_a: 3, score_b: 2)
+Prediction.create(match: Match.first, user: User.find(2), score_a: 1, score_b: 2)
+Prediction.create(match: Match.first, user: User.find(3), score_a: 2, score_b: 2)
+Prediction.create(match: Match.first, user: User.find(4), score_a: 0, score_b: 0)

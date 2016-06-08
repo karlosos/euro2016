@@ -83,13 +83,23 @@ p {
 table {
   .center {
     text-align: center;
+    h1 {
+      text-align: center;
+    }
   }
   .left {
     text-align: left;
+    h1 {
+      text-align: left;
+    }
   }
   .right {
     text-align: right;
+    h1 {
+      text-align: right;
+    }
   }
+  
   .delimeter {
     padding-left: 0px;
     padding-right: 0px;
