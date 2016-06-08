@@ -2,7 +2,7 @@ class Match < ActiveRecord::Base
   belongs_to :team_a,    class_name: "Team", foreign_key: "team_a_id"
   belongs_to :team_b, class_name: "Team", foreign_key: "team_b_id"
   has_many :predictions, dependent: :destroy
-
+  before_update :set_old_date
   #before_create :set_default_date
   after_update do |match|
     for prediction in match.predictions
@@ -28,6 +28,12 @@ class Match < ActiveRecord::Base
 
   def set_default_date
     self.date = DateTime.now
+  end
+
+  def set_old_date
+    if self.date_changed? && !self.date.present?
+      self.date = self.date_was
+    end
   end
 
   def get_result
