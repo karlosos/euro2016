@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 20160607193617) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
 
   create_table "matches", force: true do |t|
-    t.datetime "date"
+    t.datetime "date",       default: '2016-06-08 11:39:19', null: false
     t.integer  "team_a_id"
     t.integer  "team_b_id"
     t.integer  "score_a"

@@ -23,17 +23,17 @@
       <td class="delimeter center">:</td>
       <td class="score_b left"><%= match.score_b %></td>
       <td class="team_b right"><%= match.team_b.name %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
-      <% prediction = match.predictions.find_by(user: current_user.id) %>
+      <% prediction = match.predictions.find_by(user: @user.id) %>
         <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? %>
-        <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: current_user.id).score_a %></td>
+        <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: @user.id).score_a %></td>
         <td class="delimeter center">:</td>
-        <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: current_user.id).score_b %></td>
-        <td> <%= match.predictions.find_by(user: current_user.id).points %> </td>
+        <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: @user.id).score_b %></td>
+        <td> <%= match.predictions.find_by(user: @user.id).points %> </td>
       <% elsif prediction && prediction.score_a? == false %>
         <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
         <td></td>
       <% else %>
-        <% prediction = Prediction.create(match: match, user: current_user) %>
+        <% prediction = Prediction.create(match: match, user: @user) %>
         <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
         <td></td>
       <% end %>
