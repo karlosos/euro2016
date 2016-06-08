@@ -53,9 +53,9 @@ class PredictionsController < ApplicationController
   # PATCH/PUT /predictions/1.json
   def update
     respond_to do |format|
-      if @prediction.user == current_user && @match.predictable? == false
+      if @prediction.user == current_user && @prediction.match.predictable? == true
         if @prediction.update(prediction_params)
-          format.html { redirect_to @prediction, notice: 'Prediction was successfully updated.' }
+          format.html { redirect_to user_url(@prediction.user.username), notice: 'Prediction was successfully updated.' }
           format.json { render :show, status: :ok, location: @prediction }
         else
           format.html { render :edit }

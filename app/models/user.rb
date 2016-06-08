@@ -33,4 +33,5 @@ class User < ActiveRecord::Base
   def predictions_points
     return self.predictions.sum(:points)
   end
+
 end

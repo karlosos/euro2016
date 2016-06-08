@@ -1,0 +1,12 @@
+<table>
+  <% match.predictions.each do |prediction| %>
+  <tr>
+    <td><%= image_tag(@match.team_a.flag_url, class: "flag") %><%= @match.team_a.name %></td>
+    <td class="right"><%= prediction.score_a %></td>
+    <td class="delimeter">:</td>
+    <td class="left"><%= prediction.score_b %></td>
+    <td class="right"><%= @match.team_b.name %><%= image_tag(@match.team_b.flag_url, class: "flag") %></td>
+    <td><%= link_to prediction.user.username, user_path(prediction.user.username) %> </td>
+  </tr>
+  <% end %>
+</table>

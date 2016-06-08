@@ -78,7 +78,22 @@ p {
   line-height: 1.7em;
 }
 
-
+table {
+  .center {
+    text-align: center;
+  }
+  .left {
+    text-align: left;
+  }
+  .right {
+    text-align: right;
+  }
+  .delimeter {
+    padding-left: 0px;
+    padding-right: 0px;
+    text-align: center;
+  }
+}
 /* header */
 
 #logo {
@@ -189,6 +204,12 @@ input {
   }
 }
 
+.long {
+  input {
+    width: 100%;
+  }
+}
+
 
 /* table of matches */
 table {
@@ -200,19 +221,6 @@ table.matches {
   td {
     padding: 5px;
     vertical-align: middle;
-  }
-  .center {
-    text-align: center;
-  }
-  .left {
-    text-align: left;
-  }
-  .right {
-    text-align: right;
-  }
-  .delimeter {
-    padding-left: 0px;
-    padding-right: 0px;
   }
 }
 

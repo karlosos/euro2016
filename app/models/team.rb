@@ -5,4 +5,12 @@ class Team < ActiveRecord::Base
   def matches
     Match.where("team_a = ? OR team_b = ?", self.id, self.id)
   end
+
+  def last_matches(limit)
+    Match.where("team_a_id = ? OR team_b_id = ?", self.id, self.id).where("date < ?", DateTime.now).order('date ASC').limit(limit)
+  end
+
+  def next_matches(limit)
+    Match.where("team_a_id = ? OR team_b_id = ?", self.id, self.id).where("date < ?", DateTime.now).order('date ASC').limit(limit)
+  end
 end

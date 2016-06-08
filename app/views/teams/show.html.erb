@@ -1,5 +1,17 @@
 <p id="notice"><%= notice %></p>
-<%= image_tag(@team.flag_url) %> <%= link_to @team.name, @team %>
-<br>
-<%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+<div class="row">
+  <h2><%= image_tag(@team.flag_url) %><%= link_to @team.name, team_path(@team.name) %></h2>
+</div>
+<div class="row">
+  <div class="col-md-6">
+    <h2>Last matches</h2>
+    <%= render 'matches', :matches => @team.last_matches(5) %>
+  </div>
+  <div class="col-md-6">
+    <h2>Next matches</h2>
+    <%= render 'matches', :matches => @team.next_matches(5) %>
+  </div>
+</div>
+<% if current_user.try(:admin?) %>
+<%= link_to 'Edit', edit_team_path(@team) %>
+<% end %>

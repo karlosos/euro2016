@@ -1,28 +1,37 @@
 <%= form_for(@prediction) do |f| %>
-  <% if @prediction.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@prediction.errors.count, "error") %> prohibited this prediction from being saved:</h2>
+<% if @prediction.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@prediction.errors.count, "error") %>
+    prohibited this prediction from being saved:</h2>
 
-      <ul>
-      <% @prediction.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <ul>
+    <% @prediction.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
 
-  <div class="short">
-  <%= hidden_field(:match_id, @match.id) %>
-    <%= f.label @match.team_a.name %>
-    <%= image_tag(@match.team_a.flag_url, class: "flag") %>
-    <%= f.number_field :score_a %>
-    :
-    <%= f.number_field :score_b %>
-    <%= image_tag(@match.team_b.flag_url, class: "flag") %>
-    <%= f.label @match.team_b.name %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="short">
+  <table>
+    <tr>
+      <%= hidden_field(:match_id, @match.id) %>
+      <td>
+        <%= f.label @match.team_a.name %>
+        <%= image_tag(@match.team_a.flag_url, class: "flag") %>
+      </td>
+      <td>
+        <%= f.number_field :score_a %>
+      </td>
+      <td>:</td>
+      <td><%= f.number_field :score_b %></td>
+      <td><%= image_tag(@match.team_b.flag_url, class: "flag") %>
+        <%= f.label @match.team_b.name %></td>
+    </tr>
+  </table>
+</div>
+<div class="actions long">
+  <%= f.submit %>
+</div>
 
 <% end %>
