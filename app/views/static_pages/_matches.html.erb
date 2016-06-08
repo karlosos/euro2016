@@ -14,7 +14,7 @@
         <% row_class = "warning" %>
       <% end %>
       <tr class="<%= row_class %>">
-        <td class="date left"><%= match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M") %></td>
+        <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
         <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %><%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
         <td class="score_a right"><%= match.score_a %></td>
         <td class="delimeter center">:</td>

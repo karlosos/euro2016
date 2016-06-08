@@ -12,7 +12,7 @@
   <tbody>
     <% matches.each do |match| %>
     <tr>
-      <td class="date left"><%= match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M") %></td>
+      <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
       <td class="right flag"><%= image_tag(match.team_a.flag_url, class: "flag") %></td>
       <td class="team_a left"><%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
       <td class="score_a right"><%= match.score_a %></td>
