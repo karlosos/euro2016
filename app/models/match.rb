@@ -29,4 +29,16 @@ class Match < ActiveRecord::Base
   def set_default_date
     self.date = DateTime.now
   end
+
+  def get_result
+    if self.score_a.nil? || self.score_a.nil?
+      return nil
+    elsif self.score_a > self.score_b
+      return 1
+    elsif self.score_a < self.score_b
+      return 2
+    elsif self.score_a == self.score_b
+      return 0
+    end
+  end
 end

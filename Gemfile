@@ -25,7 +25,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'time_difference'
-
+gem 'momentjs-rails', '>= 2.9.0'
+gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'

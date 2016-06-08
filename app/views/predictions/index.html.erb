@@ -17,11 +17,11 @@
         <% end %>
         <td> <%= prediction.match.team_a.name %> </td>
         <% if prediction.score_a? || prediction.match.predictable? == false %>
-        <td> <%= prediction.score_a %></td>
-        <td>:</td>
-        <td> <%= prediction.score_b %> </td>
+          <td> <%= prediction.score_a %></td>
+          <td>:</td>
+          <td> <%= prediction.score_b %> </td>
         <% else %>
-        <%= render 'prediction_form', :prediction => prediction, :match_id => prediction.match.id %>
+          <%= render 'prediction_form', :prediction => prediction, :match_id => prediction.match.id %>
         <% end %>
         <td> <%= prediction.match.team_b.name %> </td>
         <td><%= link_to 'Edit', edit_prediction_path(prediction) %></td>

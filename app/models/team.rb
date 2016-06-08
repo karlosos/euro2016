@@ -11,6 +11,6 @@ class Team < ActiveRecord::Base
   end
 
   def next_matches(limit)
-    Match.where("team_a_id = ? OR team_b_id = ?", self.id, self.id).where("date < ?", DateTime.now).order('date ASC').limit(limit)
+    Match.where("team_a_id = ? OR team_b_id = ?", self.id, self.id).where("date > ?", DateTime.now).order('date ASC').limit(limit)
   end
 end

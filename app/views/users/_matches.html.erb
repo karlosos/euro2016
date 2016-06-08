@@ -24,13 +24,13 @@
       <td class="score_b left"><%= match.score_b %></td>
       <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
       <% prediction = match.predictions.find_by(user: @user.id) %>
-        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? %>
+        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.match.predictable? == false %>
         <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: @user.id).score_a %></td>
         <td class="delimeter center">:</td>
         <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: @user.id).score_b %></td>
-        <td>
+        <td class="center">
           <%= match.predictions.find_by(user: @user.id).points %>
-          <% if match.predictable? && @user == current_user%>
+          <% if match.predictable? && @user == current_user && prediction.points.nil?%>
             <%= link_to 'Edit', edit_prediction_path(prediction) %>
           <% end %>
         </td>
