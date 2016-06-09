@@ -6,14 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: "admin@admin.pl", username: "admin", password: "password", password_confirmation: "password", admin: true)
-
-User.create(email: "losowy_email@go.pl", username: "karol" , password: "password", password_confirmation: "password", admin: false)
-
-User.create(email: "alan@example.com", username: "alan" , password: "password", password_confirmation: "password", admin: false)
-
-User.create(email: "olaf@example.com", username: "olaf" , password: "password", password_confirmation: "password", admin: false)
-
 # Teams
 Team.create(name: 'Francja', flag_url:  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Flag_of_France.svg/22px-Flag_of_France.svg.png')
 Team.create(name: 'Czechy', flag_url:  'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/22px-Flag_of_the_Czech_Republic.svg.png')
@@ -77,10 +69,21 @@ Match.create(date: DateTime.parse('22.06.2016 21:00:00+02:00'), team_a_id: Team.
 Match.create(date: DateTime.parse('22.06.2016 21:00:00+02:00'), team_a_id: Team.find_by(name:'Szwecja').id, team_b_id: Team.find_by(name:'Belgia').id, stadium: 'Allianz Riviera, Nicea')
 Match.create(date: DateTime.parse('22.06.2016 18:00:00+02:00'), team_a_id: Team.find_by(name:'Islandia').id, team_b_id: Team.find_by(name:'Austria').id, stadium: 'Stade de France, Saint-Denis')
 
-Prediction.create(match: Match.first, user: User.find(1), score_a: 3, score_b: 2)
-Prediction.create(match: Match.first, user: User.find(2), score_a: 1, score_b: 2)
-Prediction.create(match: Match.first, user: User.find(3), score_a: 2, score_b: 2)
-Prediction.create(match: Match.first, user: User.find(4), score_a: 0, score_b: 0)
+# Users
+User.create(email: "ciapek@example.com", username: "ciapek" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "julka@example.com", username: "julka" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "kacper@example.com", username: "kacper" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "karol@example.com", username: "karol" , password: "password", password_confirmation: "password", admin: true)
+
+User.create(email: "konrad@example.com", username: "konrad" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "skolwin@example.com", username: "skolwin" , password: "password", password_confirmation: "password", admin: false)
+
+User.create(email: "wojna@example.com", username: "wojna" , password: "password", password_confirmation: "password", admin: false)
+
 
 Channel.create(name: "Polsat", access: true,  image_url: "http://i.wp.pl/a/i/program_tv/logotypy/5.jpg")
 Channel.create(name: "Polsat Sport", access: false, image_url: "http://i.wp.pl/a/i/program_tv/logotypy/polsat-sport.jpg")
@@ -183,3 +186,94 @@ Match.find(33).channels << Channel.find(3)
 Match.find(34).channels << Channel.find(3)
 
 Match.find(35).channels << Channel.find(3)
+
+Prediction.create(match: Match.find(1), score_a: 3, score_b: 1, user: User.find(1));
+Prediction.create(match: Match.find(2), score_a: 1, score_b: 1, user: User.find(1));
+Prediction.create(match: Match.find(3), score_a: 0, score_b: 0, user: User.find(1));
+Prediction.create(match: Match.find(4), score_a: 2, score_b: 2, user: User.find(1));
+Prediction.create(match: Match.find(5), score_a: 1, score_b: 2, user: User.find(1));
+Prediction.create(match: Match.find(6), score_a: 1, score_b: 1, user: User.find(1));
+Prediction.create(match: Match.find(7), score_a: 3, score_b: 0, user: User.find(1));
+Prediction.create(match: Match.find(8), score_a: 1, score_b: 1, user: User.find(1));
+Prediction.create(match: Match.find(9), score_a: 0, score_b: 3, user: User.find(1));
+Prediction.create(match: Match.find(10), score_a: 2, score_b: 3, user: User.find(1));
+Prediction.create(match: Match.find(11), score_a: 0, score_b: 0, user: User.find(1));
+Prediction.create(match: Match.find(12), score_a: 1, score_b: 0, user: User.find(1));
+
+Prediction.create(match: Match.find(1), score_a:    3, score_b: 0, user: User.find(2));
+Prediction.create(match: Match.find(2), score_a:    0, score_b: 1, user: User.find(2));
+Prediction.create(match: Match.find(3), score_a:    0, score_b: 1, user: User.find(2));
+Prediction.create(match: Match.find(4), score_a:    2, score_b: 0, user: User.find(2));
+Prediction.create(match: Match.find(5), score_a:    1, score_b: 2, user: User.find(2));
+Prediction.create(match: Match.find(6), score_a:    1, score_b: 0, user: User.find(2));
+Prediction.create(match: Match.find(7), score_a:    2, score_b: 1, user: User.find(2));
+Prediction.create(match: Match.find(8), score_a:    2, score_b: 0, user: User.find(2));
+Prediction.create(match: Match.find(9), score_a:    1, score_b: 1, user: User.find(2));
+Prediction.create(match: Match.find(10), score_a:   2, score_b: 2, user: User.find(2));
+Prediction.create(match: Match.find(11), score_a:   2, score_b: 0, user: User.find(2));
+Prediction.create(match: Match.find(12), score_a:   1, score_b: 0, user: User.find(2));
+
+Prediction.create(match: Match.find(1), score_a:    3, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(2), score_a:    2, score_b: 3, user: User.find(3));
+Prediction.create(match: Match.find(3), score_a:    2, score_b: 2, user: User.find(3));
+Prediction.create(match: Match.find(4), score_a:    3, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(5), score_a:    1, score_b: 2, user: User.find(3));
+Prediction.create(match: Match.find(6), score_a:    2, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(7), score_a:    3, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(8), score_a:    4, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(9), score_a:    2, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(10), score_a:   1, score_b: 2, user: User.find(3));
+Prediction.create(match: Match.find(11), score_a:   3, score_b: 1, user: User.find(3));
+Prediction.create(match: Match.find(12), score_a:   3, score_b: 1, user: User.find(3));
+
+Prediction.create(match: Match.find(1), score_a:    2, score_b: 0, user: User.find(4));
+Prediction.create(match: Match.find(2), score_a:    1, score_b: 2, user: User.find(4));
+Prediction.create(match: Match.find(3), score_a:    3, score_b: 1, user: User.find(4));
+Prediction.create(match: Match.find(4), score_a:    1, score_b: 1, user: User.find(4));
+Prediction.create(match: Match.find(5), score_a:    2, score_b: 0, user: User.find(4));
+Prediction.create(match: Match.find(6), score_a:    1, score_b: 0, user: User.find(4));
+Prediction.create(match: Match.find(7), score_a:    0, score_b: 0, user: User.find(4));
+Prediction.create(match: Match.find(8), score_a:    2, score_b: 0, user: User.find(4));
+Prediction.create(match: Match.find(9), score_a:    1, score_b: 4, user: User.find(4));
+Prediction.create(match: Match.find(10), score_a:   1, score_b: 1, user: User.find(4));
+Prediction.create(match: Match.find(11), score_a:   2, score_b: 1, user: User.find(4));
+Prediction.create(match: Match.find(12), score_a:   3, score_b: 0, user: User.find(4));
+
+Prediction.create(match: Match.find(1), score_a:    3, score_b: 0, user: User.find(5));
+Prediction.create(match: Match.find(2), score_a:    0, score_b: 2, user: User.find(5));
+Prediction.create(match: Match.find(3), score_a:    2, score_b: 1, user: User.find(5));
+Prediction.create(match: Match.find(4), score_a:    2, score_b: 1, user: User.find(5));
+Prediction.create(match: Match.find(5), score_a:    0, score_b: 0, user: User.find(5));
+Prediction.create(match: Match.find(6), score_a:    2, score_b: 1, user: User.find(5));
+Prediction.create(match: Match.find(7), score_a:    2, score_b: 0, user: User.find(5));
+Prediction.create(match: Match.find(8), score_a:    3, score_b: 1, user: User.find(5));
+Prediction.create(match: Match.find(9), score_a:    1, score_b: 2, user: User.find(5));
+Prediction.create(match: Match.find(10), score_a:   1, score_b: 0, user: User.find(5));
+Prediction.create(match: Match.find(11), score_a:   3, score_b: 0, user: User.find(5));
+Prediction.create(match: Match.find(12), score_a:   1, score_b: 1, user: User.find(5));
+
+Prediction.create(match: Match.find(1), score_a:    2, score_b: 0, user: User.find(6));
+Prediction.create(match: Match.find(2), score_a:    0, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(3), score_a:    1, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(4), score_a:    2, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(5), score_a:    2, score_b: 2, user: User.find(6));
+Prediction.create(match: Match.find(6), score_a:    2, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(7), score_a:    3, score_b: 0, user: User.find(6));
+Prediction.create(match: Match.find(8), score_a:    2, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(9), score_a:    1, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(10), score_a:   0, score_b: 1, user: User.find(6));
+Prediction.create(match: Match.find(11), score_a:   0, score_b: 0, user: User.find(6));
+Prediction.create(match: Match.find(12), score_a:   2, score_b: 1, user: User.find(6));
+
+Prediction.create(match: Match.find(1), score_a:    2, score_b: 1, user: User.find(7));
+Prediction.create(match: Match.find(2), score_a:    0, score_b: 1, user: User.find(7));
+Prediction.create(match: Match.find(3), score_a:    1, score_b: 0, user: User.find(7));
+Prediction.create(match: Match.find(4), score_a:    0, score_b: 0, user: User.find(7));
+Prediction.create(match: Match.find(5), score_a:    1, score_b: 3, user: User.find(7));
+Prediction.create(match: Match.find(6), score_a:    2, score_b: 1, user: User.find(7));
+Prediction.create(match: Match.find(7), score_a:    3, score_b: 0, user: User.find(7));
+Prediction.create(match: Match.find(8), score_a:    1, score_b: 0, user: User.find(7));
+Prediction.create(match: Match.find(9), score_a:    1, score_b: 1, user: User.find(7));
+Prediction.create(match: Match.find(10), score_a:   2, score_b: 3, user: User.find(7));
+Prediction.create(match: Match.find(11), score_a:   0, score_b: 0, user: User.find(7));
+Prediction.create(match: Match.find(12), score_a:   1, score_b: 0, user: User.find(7));
