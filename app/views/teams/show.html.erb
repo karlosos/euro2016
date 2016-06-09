@@ -1,3 +1,6 @@
+<% title = "#{@team.name}" %>
+<% provide(:title, title) %>
+
 <p id="notice"><%= notice %></p>
 <div class="row">
   <h1 class="team_name"><%= image_tag(@team.flag_url) %><%= link_to @team.name, team_path(@team.id) %></h1>
