@@ -2,6 +2,8 @@ class Match < ActiveRecord::Base
   belongs_to :team_a,    class_name: "Team", foreign_key: "team_a_id"
   belongs_to :team_b, class_name: "Team", foreign_key: "team_b_id"
   has_many :predictions, dependent: :destroy
+  has_many :broadcasts
+  has_many :channels, :through => :broadcasts
   before_update :set_old_date
   #before_create :set_default_date
   after_update do |match|

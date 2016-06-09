@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607193617) do
+ActiveRecord::Schema.define(version: 20160609130149) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -30,6 +30,23 @@ ActiveRecord::Schema.define(version: 20160607193617) do
 
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+
+  create_table "broadcasts", force: true do |t|
+    t.integer  "channel_id"
+    t.integer  "match_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "broadcasts", ["channel_id"], name: "index_broadcasts_on_channel_id"
+  add_index "broadcasts", ["match_id"], name: "index_broadcasts_on_match_id"
+
+  create_table "channels", force: true do |t|
+    t.string   "name"
+    t.string   "image_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "matches", force: true do |t|
     t.datetime "date",       default: '2016-06-08 18:14:44', null: false
