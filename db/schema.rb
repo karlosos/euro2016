@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20160609130149) do
   end
 
   create_table "matches", force: true do |t|
-    t.datetime "date",       default: '2016-06-08 18:14:44', null: false
+    t.datetime "date",       default: '2016-06-09 14:05:00', null: false
     t.integer  "team_a_id"
     t.integer  "team_b_id"
     t.integer  "score_a"

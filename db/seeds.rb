@@ -81,3 +81,104 @@ Prediction.create(match: Match.first, user: User.find(1), score_a: 3, score_b: 2
 Prediction.create(match: Match.first, user: User.find(2), score_a: 1, score_b: 2)
 Prediction.create(match: Match.first, user: User.find(3), score_a: 2, score_b: 2)
 Prediction.create(match: Match.first, user: User.find(4), score_a: 0, score_b: 0)
+
+Channel.create(name: "Polsat")
+Channel.create(name: "Polsat Sport")
+Channel.create(name: "Polsat Sport 2 HD")
+Channel.create(name: "Polsat Sport 3 HD")
+
+Match.find(1).channels << Channel.find(1)
+Match.find(1).channels << Channel.find(2)
+Match.find(1).channels << Channel.find(3)
+
+Match.find(2).channels << Channel.find(1)
+Match.find(2).channels << Channel.find(2)
+Match.find(2).channels << Channel.find(3)
+
+Match.find(3).channels << Channel.find(3)
+
+Match.find(4).channels << Channel.find(3)
+
+Match.find(5).channels << Channel.find(3)
+
+Match.find(6).channels << Channel.find(1)
+Match.find(6).channels << Channel.find(2)
+Match.find(6).channels << Channel.find(3)
+
+Match.find(7).channels << Channel.find(3)
+
+Match.find(8).channels << Channel.find(1)
+Match.find(8).channels << Channel.find(2)
+Match.find(8).channels << Channel.find(3)
+
+Match.find(9).channels << Channel.find(3)
+
+Match.find(10).channels << Channel.find(3)
+
+Match.find(11).channels << Channel.find(1)
+Match.find(11).channels << Channel.find(2)
+Match.find(11).channels << Channel.find(3)
+
+Match.find(12).channels << Channel.find(3)
+
+Match.find(13).channels << Channel.find(1)
+Match.find(13).channels << Channel.find(2)
+Match.find(13).channels << Channel.find(3)
+
+Match.find(14).channels << Channel.find(3)
+
+Match.find(15).channels << Channel.find(3)
+
+Match.find(16).channels << Channel.find(3)
+
+Match.find(17).channels << Channel.find(3)
+
+Match.find(18).channels << Channel.find(1)
+Match.find(18).channels << Channel.find(2)
+Match.find(18).channels << Channel.find(3)
+
+Match.find(19).channels << Channel.find(1)
+Match.find(19).channels << Channel.find(2)
+Match.find(19).channels << Channel.find(3)
+
+Match.find(20).channels << Channel.find(3)
+
+Match.find(21).channels << Channel.find(3)
+
+Match.find(22).channels << Channel.find(1)
+Match.find(22).channels << Channel.find(2)
+Match.find(22).channels << Channel.find(3)
+
+Match.find(23).channels << Channel.find(3)
+
+Match.find(24).channels << Channel.find(3)
+
+Match.find(25).channels << Channel.find(1)
+Match.find(25).channels << Channel.find(2)
+Match.find(25).channels << Channel.find(3)
+
+Match.find(26).channels << Channel.find(3)
+
+Match.find(27).channels << Channel.find(1)
+Match.find(27).channels << Channel.find(2)
+Match.find(27).channels << Channel.find(3)
+
+Match.find(28).channels << Channel.find(3)
+
+Match.find(29).channels << Channel.find(1)
+Match.find(29).channels << Channel.find(2)
+Match.find(29).channels << Channel.find(3)
+
+Match.find(30).channels << Channel.find(3)
+
+Match.find(31).channels << Channel.find(3)
+
+Match.find(32).channels << Channel.find(1)
+Match.find(32).channels << Channel.find(2)
+Match.find(32).channels << Channel.find(3)
+
+Match.find(33).channels << Channel.find(3)
+
+Match.find(34).channels << Channel.find(3)
+
+Match.find(35).channels << Channel.find(3)
