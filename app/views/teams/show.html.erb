@@ -4,11 +4,11 @@
 </div>
 <div class="row">
   <div class="col-md-6">
-    <h2>Last matches</h2>
+    <h2>Ostatnie mecz</h2>
     <%= render 'matches', :matches => @team.last_matches(5) %>
   </div>
   <div class="col-md-6">
-    <h2>Next matches</h2>
+    <h2>Następne mecze</h2>
     <%= render 'matches', :matches => @team.next_matches(5) %>
   </div>
 </div>

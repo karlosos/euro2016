@@ -5,7 +5,7 @@
     <th class="left"></th>
     <th class="center">Wynik</th>
     <th class="right"></th>
-    <th class="center">Twój wynik</th>
+    <th class="center">Typ</th>
     <th>pkt</th>
     <th></th>
   </thead>
@@ -44,7 +44,7 @@
         <td class="center">
           <%= match.predictions.find_by(user: @user.id).points %>
           <% if match.predictable? && @user == current_user && prediction.points.nil?%>
-            <%= link_to 'Edit', edit_prediction_path(prediction) %>
+            <%= link_to 'Edytuj', edit_prediction_path(prediction) %>
           <% end %>
         </td>
       <% elsif prediction && prediction.score_a? == false && @user == current_user %>
@@ -73,7 +73,7 @@
     <tr>
       <td colspan="9">
         <div class="actions">
-          <%= submit_tag "Submit", :class => "btn btn-primary"%>
+          <%= submit_tag "Aktualizuj", :class => "btn btn-primary"%>
         </div>
       </td>
     </tr>
