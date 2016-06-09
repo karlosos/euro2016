@@ -9,12 +9,18 @@
     <td class="left">
       <%= link_to match.team_a.name, team_path(match.team_a.id) %>
     </td>
-    <td class="right">
-      <%= match.score_a %>
-    </td>
-    <td class='delimeter'>:</td>
-    <td class="left">
-      <%= match.score_b %>
+    <td class="center">
+      <div class="score">
+        <span class="event-result">
+        <% if match.score_a.present? %>
+          <%= match.score_a %>
+          :
+          <%= match.score_b %>
+        <% else %>
+          -:-
+        <% end %>
+        </span>
+      </div>
     </td>
     <td class="right">
       <%= link_to match.team_b.name, team_path(match.team_b.id) %>

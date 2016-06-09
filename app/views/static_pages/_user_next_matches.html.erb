@@ -3,8 +3,8 @@
   <thead class="thead-inverse">
     <th class="left">Data</th>
     <th class="left"></th>
-    <th class="center" colspan="3">Wynik</th>
-    <th class="right"></th>
+    <th class="center">Wynik</th>
+    <th class="center"></th>
     <th class="center" colspan="3">Twój wynik</th>
   </thead>
   <tbody>
@@ -18,21 +18,35 @@
     <tr class="<%= row_class %>">
       <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
       <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %><%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
-      <td class="score_a right"><%= match.score_a %></td>
-      <td class="delimeter center">:</td>
-      <td class="score_b left"><%= match.score_b %></td>
+      <td class="center">
+        <div class="score">
+          <span class="event-result">
+          <% if match.score_a.present? %>
+            <%= match.score_a %>
+            :
+            <%= match.score_b %>
+          <% else %>
+            -:-
+          <% end %>
+          </span>
+        </div>
+      </td>
       <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
-      <% prediction = match.predictions.find_by(user: current_user.id) %>
-        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? %>
-        <td class="user_prediction_score_a right"><%= match.predictions.find_by(user: current_user.id).score_a %></td>
-        <td class="delimeter center">:</td>
-        <td class="user_prediction_score_b left"><%= match.predictions.find_by(user: current_user.id).score_b %></td>
-      <% elsif prediction && prediction.score_a? == false %>
-        <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
-      <% else %>
-        <% prediction = Prediction.create(match: match, user: current_user) %>
-        <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
-      <% end %>
+      <td>
+        <div class="prediction short">
+          <% prediction = match.predictions.find_by(user: current_user.id) %>
+            <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? %>
+            <%= match.predictions.find_by(user: current_user.id).score_a %>
+            :
+            <%= match.predictions.find_by(user: current_user.id).score_b %>
+          <% elsif prediction && prediction.score_a? == false %>
+            <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
+          <% else %>
+            <% prediction = Prediction.create(match: match, user: current_user) %>
+            <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
+          <% end %>
+        </div>
+      </td>
       <td class="">
         <% match.channels.each do |channel| %>
           <% if channel.image_url.present? %>

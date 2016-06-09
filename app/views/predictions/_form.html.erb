@@ -22,9 +22,9 @@
       </td>
       <td>
         <%= f.number_field :score_a %>
+        :
+        <%= f.number_field :score_b %>
       </td>
-      <td>:</td>
-      <td><%= f.number_field :score_b %></td>
       <td><%= image_tag(@match.team_b.flag_url, class: "flag") %>
         <%= f.label @match.team_b.name %></td>
     </tr>

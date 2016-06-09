@@ -2,7 +2,7 @@
   <thead class="thead-inverse">
     <th class="left">Data</th>
     <th class="left">Team A</th>
-    <th class="center" colspan="3">Wynik</th>
+    <th class="center">Wynik</th>
     <th class="right">Team B</th>
     <th></th>
   </thead>
@@ -17,9 +17,17 @@
       <tr class="<%= row_class %>">
         <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
         <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %><%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
-        <td class="score_a right"><%= match.score_a %></td>
-        <td class="delimeter center">:</td>
-        <td class="score_b left"><%= match.score_b %></td>
+        <td class="score center">
+          <span class="event-result">
+          <% if match.score_a.present? %>
+            <%= match.score_a %>
+            :
+            <%= match.score_b %>
+          <% else %>
+            -:-
+          <% end %>
+        </span>
+        </td>
         <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
         <td class="">
           <% match.channels.each do |channel| %>

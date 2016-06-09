@@ -99,7 +99,7 @@ table {
       text-align: right;
     }
   }
-  
+
   .delimeter {
     padding-left: 0px;
     padding-right: 0px;
@@ -239,6 +239,10 @@ input {
 table {
   @extend .table;
 }
+
+td {
+  vertical-align: middle !important; 
+}
 table.matches {
   width: 800px;
   margin: 0 auto;
@@ -252,4 +256,44 @@ table.matches {
   margin-right: 5px;
   margin-left: 5px;
   padding: 0px;
+  vertical-align: middle;
+  margin-bottom: 0.25em;
+}
+
+.event-result {
+  color: white;
+  padding: 3px;
+}
+
+.score {
+  background-color: rgb(28, 28, 28);
+  color: white;
+  width: 40px;
+  padding: 3px;
+  border-radius: 4px;
+  margin: auto;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance:textfield;
+    text-align: center;
+}
+
+.prediction {
+  margin: 0 auto;
+  text-align: center;
+}
+/* team view */
+.team_name {
+  text-align: center;
+  font-size: 40px;
+  .flag {
+    margin-bottom: 30px;
+  }
 }
