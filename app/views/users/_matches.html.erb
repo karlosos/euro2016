@@ -7,6 +7,7 @@
     <th class="right"></th>
     <th class="center" colspan="3">Twój wynik</th>
     <th>pkt</th>
+    <th></th>
   </thead>
   <tbody>
     <% matches.each do |match| %>
@@ -47,6 +48,13 @@
           <td></td>
           <td></td>
       <% end %>
+      <td class="">
+        <% match.channels.each do |channel| %>
+          <% if channel.image_url.present? %>
+            <%= image_tag channel.image_url %>
+          <% end %>
+        <% end %>
+      </td>
     </tr>
     <% end %>
   </tbody>

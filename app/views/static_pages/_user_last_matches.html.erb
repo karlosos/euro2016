@@ -32,6 +32,13 @@
           <td></td>
           <td></td>
         <% end %>
+        <td class="">
+          <% match.channels.each do |channel| %>
+            <% if channel.image_url.present? %>
+              <%= image_tag channel.image_url %>
+            <% end %>
+          <% end %>
+        </td>
     </tr>
     <% end %>
   </tbody>

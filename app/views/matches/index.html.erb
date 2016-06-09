@@ -12,7 +12,15 @@
       <tr>
         <td><%= match.date.in_time_zone("Poland") %></td>
         <td><%= image_tag(match.team_a.flag_url, class: "flag") %> <%= match.team_a.name %></td>
+        <td><%= match.score_a %>:<%= match.score_b %></td>
         <td><%= image_tag(match.team_b.flag_url, class: "flag") %> <%= match.team_b.name %></td>
+        <td class="">
+          <% match.channels.each do |channel| %>
+            <% if channel.image_url.present? %>
+              <%= image_tag channel.image_url %>
+            <% end %>
+          <% end %>
+        </td>
         <td><%= link_to 'Show', match %></td>
         <td><%= link_to 'Edit', edit_match_path(match) %></td>
         <td><%= link_to 'Destroy', match, method: :delete, data: { confirm: 'Are you sure?' } %></td>

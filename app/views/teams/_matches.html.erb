@@ -19,6 +19,13 @@
     <td class="right">
       <%= link_to match.team_b.name, team_path(match.team_b.id) %>
     </td>
+    <td class="">
+      <% match.channels.each do |channel| %>
+        <% if channel.image_url.present? %>
+          <%= image_tag channel.image_url %>
+        <% end %>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>
