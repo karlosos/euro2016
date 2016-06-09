@@ -82,10 +82,10 @@ Prediction.create(match: Match.first, user: User.find(2), score_a: 1, score_b: 2
 Prediction.create(match: Match.first, user: User.find(3), score_a: 2, score_b: 2)
 Prediction.create(match: Match.first, user: User.find(4), score_a: 0, score_b: 0)
 
-Channel.create(name: "Polsat")
-Channel.create(name: "Polsat Sport")
-Channel.create(name: "Polsat Sport 2 HD")
-Channel.create(name: "Polsat Sport 3 HD")
+Channel.create(name: "Polsat", access: true )
+Channel.create(name: "Polsat Sport", access: false)
+Channel.create(name: "Polsat Sport 2 HD", access: false)
+Channel.create(name: "Polsat Sport 3 HD", access: false)
 
 Match.find(1).channels << Channel.find(1)
 Match.find(1).channels << Channel.find(2)

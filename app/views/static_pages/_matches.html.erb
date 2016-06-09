@@ -20,6 +20,11 @@
         <td class="delimeter center">:</td>
         <td class="score_b left"><%= match.score_b %></td>
         <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
+        <td class="">
+          <% match.channels.each do |channel| %>
+            <%= channel.name %> |
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

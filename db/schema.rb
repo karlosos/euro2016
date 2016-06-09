@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609130149) do
+ActiveRecord::Schema.define(version: 20160609141458) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 20160609130149) do
     t.string   "image_url"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "access"
   end
 
   create_table "matches", force: true do |t|
