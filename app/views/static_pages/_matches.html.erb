@@ -4,6 +4,7 @@
     <th class="left">Team A</th>
     <th class="center" colspan="3">Wynik</th>
     <th class="right">Team B</th>
+    <th></th>
   </thead>
   <tbody>
     <% matches.each do |match| %>
@@ -22,7 +23,9 @@
         <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
         <td class="">
           <% match.channels.each do |channel| %>
-            <%= channel.name %> |
+            <% if channel.image_url.present? %>
+              <%= image_tag channel.image_url %>
+            <% end %>
           <% end %>
         </td>
       </tr>

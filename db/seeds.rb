@@ -82,10 +82,11 @@ Prediction.create(match: Match.first, user: User.find(2), score_a: 1, score_b: 2
 Prediction.create(match: Match.first, user: User.find(3), score_a: 2, score_b: 2)
 Prediction.create(match: Match.first, user: User.find(4), score_a: 0, score_b: 0)
 
-Channel.create(name: "Polsat", access: true )
-Channel.create(name: "Polsat Sport", access: false)
+Channel.create(name: "Polsat", access: true,  image_url: "http://i.wp.pl/a/i/program_tv/logotypy/5.jpg")
+Channel.create(name: "Polsat Sport", access: false, image_url: "http://i.wp.pl/a/i/program_tv/logotypy/polsat-sport.jpg")
 Channel.create(name: "Polsat Sport 2 HD", access: false)
 Channel.create(name: "Polsat Sport 3 HD", access: false)
+Channel.create(name: "TVP1", access: true, image_url: "http://i.wp.pl/a/i/program_tv/logotypy/tvp1.jpg")
 
 Match.find(1).channels << Channel.find(1)
 Match.find(1).channels << Channel.find(2)
