@@ -17,3 +17,5 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require moment/pl
+//= require Chart.bundle
+//= require chartkick

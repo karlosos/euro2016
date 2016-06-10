@@ -14,6 +14,9 @@
 </div>
 <hr>
 <div class="row">
+  <%= pie_chart @match.predictions.group(:predicted_result).count %>
+</div>
+<div class="row">
   <div class="col-sm-12"><h2>Users predictions</h2></div>
   <table class="matches">
     <thead>
