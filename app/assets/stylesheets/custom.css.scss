@@ -300,7 +300,9 @@ input[type=number] {
 
 /* logs */
 
-.date {
-  font-size: small;
-  font-style: italic;
+.logs {
+  .date {
+    font-size: small;
+    font-style: italic;
+  }
 }
