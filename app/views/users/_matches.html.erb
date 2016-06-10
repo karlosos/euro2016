@@ -11,12 +11,18 @@
   </thead>
   <tbody>
     <% matches.each do |match| %>
-    <% time_difference = TimeDifference.between(DateTime.now, match.date).in_days %>
-    <% if time_difference < 1 %>
+
+    <% prediction = match.predictions.find_by(user: @user.id) %>
+    <% if !match.finished? %>
+      <% row_class = "" %>
+    <% elsif prediction.is_good_result %>
+      <% row_class = "info" %>
+      <% elsif prediction.is_exact_score %>
+        <% row_class = "success" %>
+    <% else %>
       <% row_class = "danger" %>
-    <% elsif time_difference < 4 %>
-      <% row_class = "warning" %>
     <% end %>
+
     <tr class="<%= row_class %>">
       <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
       <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %> <%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
@@ -34,7 +40,6 @@
         </div>
       </td>
       <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
-      <% prediction = match.predictions.find_by(user: @user.id) %>
         <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.try(:match).try(:predictable?) == false %>
         <td class="user_prediction_score_a center">
           <%= match.predictions.find_by(user: @user.id).score_a %>

@@ -12,6 +12,8 @@ class Prediction < ActiveRecord::Base
   def update_points
     if self.match.finished?
       update_attributes(:points => get_points_for_prediction(self))
+      update_attributes(:is_good_result => check_if_same_result?(self, self.match))
+      update_attributes(:is_exact_score => check_if_equal_score?(self, self.match))
     end
   end
 
