@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_many :predictions, dependent: :destroy
+  has_many :logs
   scope :order_by_points, lambda { joins(:predictions).select('username, sum(predictions.points) as total_points').order('total_points desc').group('username') }
 
   def self.find_for_database_authentication(warden_conditions)

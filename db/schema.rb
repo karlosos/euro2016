@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160609141458) do
+ActiveRecord::Schema.define(version: 20160610154037) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -49,8 +49,18 @@ ActiveRecord::Schema.define(version: 20160609141458) do
     t.boolean  "access"
   end
 
+  create_table "logs", force: true do |t|
+    t.integer  "prediction_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "logs", ["prediction_id"], name: "index_logs_on_prediction_id"
+  add_index "logs", ["user_id"], name: "index_logs_on_user_id"
+
   create_table "matches", force: true do |t|
-    t.datetime "date",       default: '2016-06-09 19:42:45', null: false
+    t.datetime "date",       default: '2016-06-10 16:08:13', null: false
     t.integer  "team_a_id"
     t.integer  "team_b_id"
     t.integer  "score_a"

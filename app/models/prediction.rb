@@ -1,18 +1,31 @@
 class Prediction < ActiveRecord::Base
   belongs_to :user
   belongs_to :match
+  has_many :logs
   before_update :prevent_update, :if => :score_a_changed?
   before_update :prevent_update, :if => :score_b_changed?
+  after_update :create_log, :if => :score_a_changed?
+  after_update :create_log, :if => :score_b_changed?
   validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
-
+  # on update create logs
   def update_points
     if self.match.finished?
       update_attributes(:points => get_points_for_prediction(self))
     end
   end
 
+  def good_result?
+    prediction_result = get_result_for_score(self)
+    match_result = get_result_for_score(self.match)
+    return true if match_result == prediction_result
+    return false
+  end
+
   private
+  def create_log
+    Log.create(prediction: self, user: self.user)
+  end
 
   def get_points_for_prediction(prediction)
     if !check_if_scores_are_supplied?(prediction)
@@ -60,7 +73,6 @@ class Prediction < ActiveRecord::Base
     end
   end
 
-  private
   def prevent_update
     return true if self.match.date > DateTime.now
     false

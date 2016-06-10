@@ -11,8 +11,14 @@
       <%= render 'user_next_matches', :matches => @NextMatches %>
     </div>
     <div class="col-md-3">
-      <h2> Ranking </h2>
-      <%= render 'user_standings', :users => @BestUsers %>
+      <div>
+        <h2> Ranking </h2>
+        <%= render 'user_standings', :users => @BestUsers %>
+      </div>
+      <div>
+        <h2> Aktualności </h2>
+        <%= render 'last_logs', :logs => @Logs %>
+      </div>
     </div>
   </div>
 <% else %>
@@ -24,8 +30,14 @@
       <%= render 'matches', :matches => @NextMatches %>
     </div>
     <div class="col-md-3">
-      <h2> Ranking </h2>
-      <%= render 'user_standings', :users => @BestUsers %>
+      <div>
+        <h2> Ranking </h2>
+        <%= render 'user_standings', :users => @BestUsers %>
+      </div>
+      <div>
+        <h2> Aktualności </h2>
+        <%= render 'last_logs', :logs => @Logs %>
+      </div>
     </div>
   </div>
 <% end %>

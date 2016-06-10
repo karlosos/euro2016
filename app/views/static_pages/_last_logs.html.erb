@@ -1,0 +1,8 @@
+<% logs.each do |log| %>
+  <span>
+    <%= log.created_at %> <br>
+    <%= log.user.username %> typuje <%= log.prediction.match.team_a.name %>
+    <%= log.prediction.score_a %>:<%= log.prediction.score_b %>
+    <%= log.prediction.match.team_b.name %>
+  </span>
+<% end %>
