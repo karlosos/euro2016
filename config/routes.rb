@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   root 'static_pages#home'
+  get 'user_standings' => 'static_pages#user_standings', as: :user_standings
 
   # Predictions
   get 'predictions' => 'predictions#index', as: :predictions
