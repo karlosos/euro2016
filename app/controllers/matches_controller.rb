@@ -11,6 +11,10 @@ class MatchesController < ApplicationController
   # GET /matches/1
   # GET /matches/1.json
   def show
+    @match = Match.find(params[:id])
+    @predictions_chart = Hash[ "Remis" => @match.predictions.where(:predicted_result => 0 ).count,
+      "#{@match.team_a.name}" => @match.predictions.where(:predicted_result => 1 ).count,
+      "#{@match.team_b.name}" => @match.predictions.where(:predicted_result => 2 ).count ]
   end
 
   # GET /matches/new
