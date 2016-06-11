@@ -279,6 +279,6 @@
 # Prediction.create(match: Match.find(12), score_a:   1, score_b: 0, user: User.find(7));
 #
 Prediction.all.each do |prediction|
-  prediction.update_predicted_result
+  prediction.update_predicted_result(true)
   prediction.update_points
 end
