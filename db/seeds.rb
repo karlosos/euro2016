@@ -280,4 +280,5 @@
 #
 Prediction.all.each do |prediction|
   prediction.update_predicted_result
+  prediction.update_points
 end

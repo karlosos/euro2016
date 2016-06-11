@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160610215827) do
+ActiveRecord::Schema.define(version: 20160611165609) do
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -54,6 +54,8 @@ ActiveRecord::Schema.define(version: 20160610215827) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "score_a"
+    t.integer  "score_b"
   end
 
   add_index "logs", ["prediction_id"], name: "index_logs_on_prediction_id"

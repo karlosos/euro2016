@@ -5,7 +5,7 @@
       <span class="date"><%= time_ago_in_words(log.created_at) %> ago</span><br>
       <%= link_to log.user.username, user_path(username: log.user.username) %>
       typuje
-      <%= link_to "#{log.prediction.match.team_a.name} #{log.prediction.score_a}:#{log.prediction.score_b} #{log.prediction.match.team_b.name}", match_path(log.prediction.match.id) %>
+      <%= link_to "#{log.prediction.match.team_a.name} #{log.score_a}:#{log.score_b} #{log.prediction.match.team_b.name}", match_path(log.prediction.match.id) %>
     </td>
   </tr>
 <% end %>

@@ -4,10 +4,8 @@ class Prediction < ActiveRecord::Base
   has_many :logs
   before_update :prevent_update, :if => :score_a_changed?
   before_update :prevent_update, :if => :score_b_changed?
-  after_update :create_log, :if => :score_a_changed?
-  after_update :create_log, :if => :score_b_changed?
-  after_update :update_predicted_result, :if => :score_a_changed?
-  after_update :update_predicted_result, :if => :score_a_changed?
+  after_update :create_log
+  after_update :update_predicted_result
 
   validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
@@ -20,8 +18,10 @@ class Prediction < ActiveRecord::Base
     end
   end
 
-  def update_predicted_result
-    update_column(:predicted_result, get_result_for_score(self))
+  def update_predicted_result(special_use_in_rb = false)
+    if self.score_a_changed? || self.score_b_changed? || special_use_in_rb
+      update_column(:predicted_result, get_result_for_score(self))
+    end
   end
 
   def good_result?
@@ -33,7 +33,9 @@ class Prediction < ActiveRecord::Base
 
   private
   def create_log
-    Log.create(prediction: self, user: self.user)
+    if self.score_a_changed? || self.score_b_changed?
+      Log.create(prediction: self, user: self.user, score_a: self.score_a, score_b: self.score_b)
+    end
   end
 
   def get_points_for_prediction(prediction)
