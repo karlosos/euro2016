@@ -8,7 +8,7 @@ class Prediction < ActiveRecord::Base
   after_update :create_log, :if => :score_b_changed?
   after_update :update_predicted_result, :if => :score_a_changed?
   after_update :update_predicted_result, :if => :score_a_changed?
-  after_create :update_predicted_result
+
   validates :score_a, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   # on update create logs
@@ -21,7 +21,7 @@ class Prediction < ActiveRecord::Base
   end
 
   def update_predicted_result
-    update_attributes(:predicted_result => get_result_for_score(self))
+    update_column(:predicted_result, get_result_for_score(self))
   end
 
   def good_result?
