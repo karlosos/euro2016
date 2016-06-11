@@ -6,23 +6,19 @@
   <thead class="thead-inverse">
     <th class="left">Użytkownik</th>
     <th class="left">Punkty</th>
-    <th class="left">% dobrych typów</th>
-    <th class="left">Wytypowane dokładne wyniki</th>
   </thead>
   <tbody>
     <% @Users.each do |user| %>
     <tr>
       <td><%= link_to user.username, user_path(username: user.username) %></td>
       <td><%= user.total_points %></td>
-      <td><%= user.predictions.where("is_good_result = 1").count %></td>
-      <td><%= user.predictions.where("is_exact_score = 1").count %></td>
     </tr>
     <% end %>
   </tbody>
   <tfoot>
     <tr class="see_more">
       <td colspan="2">
-        <a href="">Zobacz całą tabelę...</a>
+        <%= link_to "Zobacz całą tabelę...", user_standings_path %>
       </td>
     </tr>
   </tfoot>
