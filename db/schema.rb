@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20160611165609) do
   add_index "logs", ["user_id"], name: "index_logs_on_user_id"
 
   create_table "matches", force: true do |t|
-    t.datetime "date",       default: '2016-06-11 16:16:06', null: false
+    t.datetime "date",       default: '2016-06-10 22:15:53', null: false
     t.integer  "team_a_id"
     t.integer  "team_b_id"
     t.integer  "score_a"

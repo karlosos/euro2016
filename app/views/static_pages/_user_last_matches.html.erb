@@ -32,7 +32,7 @@
       <td class="left flag"><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
       <% prediction = match.predictions.find_by(user: current_user.id) %>
         <% if prediction && prediction.score_a? %>
-          <td class="user_prediction_score_a center"><%= match.predictions.find_by(user: current_user.id).score_a %>:<%= match.predictions.find_by(user: current_user.id).score_b %></td>
+          <td class="prediction center"><%= match.predictions.find_by(user: current_user.id).score_a %>:<%= match.predictions.find_by(user: current_user.id).score_b %></td>
           <td class="center"> <%= match.predictions.find_by(user: current_user.id).points %> </td>
           <% else %>
           <td></td>
