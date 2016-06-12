@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @LastMatches = Match.where("date < ?" , DateTime.now).order(:date).limit(5)
+    @LastMatches = Match.where("date < ?" , DateTime.now).order(date: :desc).limit(5).reverse
     @NextMatches = Match.where("date > ?" , DateTime.now).order(:date).limit(5)
     @BestUsers = User.order_by_points.limit(5)
     @Logs = Log.last_logs
