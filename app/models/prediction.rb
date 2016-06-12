@@ -24,7 +24,9 @@ class Prediction < ActiveRecord::Base
 
   def update_predicted_result(special_use_in_rb = false)
     if self.score_a_changed? || self.score_b_changed? || special_use_in_rb
-      update_column(:predicted_result, get_result_for_score(self))
+      if self.score_a.present? && self.score_b.present?
+        update_column(:predicted_result, get_result_for_score(self))
+      end
     end
   end
 
@@ -69,6 +71,8 @@ class Prediction < ActiveRecord::Base
       return 2
     elsif result.score_a == result.score_b
       return 0
+    else
+      return nil
     end
   end
 
