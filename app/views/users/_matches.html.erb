@@ -13,18 +13,20 @@
     <% matches.each do |match| %>
 
     <% prediction = match.predictions.find_by(user: @user.id) %>
-    <% if !match.finished? %>
-      <% row_class = "" %>
-    <% elsif prediction.is_good_result %>
-      <% row_class = "info" %>
-      <% elsif prediction.is_exact_score %>
-        <% row_class = "success" %>
-    <% else %>
-      <% row_class = "danger" %>
+    <% if prediction %>
+      <% if !match.finished? %>
+        <% row_class = "" %>
+      <% elsif prediction.is_good_result %>
+        <% row_class = "info" %>
+        <% elsif prediction.is_exact_score %>
+          <% row_class = "success" %>
+      <% else %>
+        <% row_class = "danger" %>
+      <% end %>
     <% end %>
 
     <tr class="<%= row_class %>">
-      <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>
+      <td class="date left"><%= link_to match.date.in_time_zone("Poland").strftime("%d %b. %Y %H:%M"), match_path(match.id) %></td>2
       <td class="team_a left"><%= image_tag(match.team_a.flag_url, class: "flag") %> <%= link_to match.team_a.name, team_path(match.team_a.id) %></td>
       <td class="center">
         <div class="score">
