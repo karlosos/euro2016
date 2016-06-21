@@ -11,7 +11,7 @@ class Prediction < ActiveRecord::Base
   validates :score_b, numericality: { only_integer: true, greater_than_or_equal_to: 0 }, allow_nil: true
   # on update create logs
   def update_points
-    if self.match.finished?
+    if self.match.finished? && score_a.present? && score_b.present?
       update_attributes(:points => get_points_for_prediction(self))
       update_attributes(:is_good_result => check_if_same_result?(self, self.match))
       update_attributes(:is_exact_score => check_if_equal_score?(self, self.match))
