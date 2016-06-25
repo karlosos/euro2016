@@ -43,7 +43,13 @@
         </div>
       </td>
       <td class="team_b right"><%= link_to match.team_b.name, team_path(match.team_b.id) %><%= image_tag(match.team_b.flag_url, class: "flag") %></td>
-        <% if prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.try(:match).try(:predictable?) == false %>
+        <% if prediction.try(:match).try(:predictable?) && @user != current_user %>
+          <td class="user_prediction_score_a center">
+            -
+            :
+            -
+          </td>
+        <% elsif prediction && !prediction.score_a.nil? && !prediction.score_b.nil? || prediction.try(:match).try(:predictable?) == false %>
         <td class="user_prediction_score_a center">
           <%= match.predictions.find_by(user: @user.id).score_a %>
           :

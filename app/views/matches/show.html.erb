@@ -17,6 +17,7 @@
   <%= pie_chart @predictions_chart %>
 </div>
 <div class="row">
+  <% if !@match.predictable? %>
   <div class="col-sm-12"><h2>Typy użytkowników</h2></div>
   <table class="matches">
     <thead>
@@ -36,6 +37,7 @@
     </tbody>
   </table>
   </div>
+  <% end %>
 </div>
 <% if current_user.try(:admin?) %>
   <%= link_to 'Edit', edit_match_path(@match) %> |
