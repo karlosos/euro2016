@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :predictions, dependent: :destroy
   has_many :logs
 
-  scope :order_by_points, lambda { joins(:predictions).select('username, sum(predictions.points) as total_points').order('total_points desc').group('username') }
+  scope :order_by_points, lambda { joins(:predictions).select('username, sum(predictions.points) as total_points').order('total_points desc').group('username').having('total_points >= ?', 0) }
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
