@@ -11,6 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def logs
-    @Logs = Log.all_logs
+    @Logs = Log.all_logs.paginate(:page => params[:page], :per_page => 30)
   end
 end

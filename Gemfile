@@ -28,6 +28,7 @@ gem 'time_difference'
 gem 'momentjs-rails', '>= 2.9.0'
 gem 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
 gem 'chartkick'
+gem 'will_paginate', '~> 3.1.0'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
