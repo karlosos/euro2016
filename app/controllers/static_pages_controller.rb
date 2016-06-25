@@ -9,4 +9,8 @@ class StaticPagesController < ApplicationController
   def user_standings
     @Users = User.order_by_points
   end
+
+  def logs
+    @Logs = Log.last_logs
+  end
 end
