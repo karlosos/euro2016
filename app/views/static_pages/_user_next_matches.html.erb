@@ -6,7 +6,6 @@
     <th class="center">Wynik</th>
     <th class="center"></th>
     <th class="center">Typ</th>
-    <th></th>
   </thead>
   <tbody>
     <% matches.each do |match| %>
@@ -41,13 +40,6 @@
             <%= render 'prediction_form', :prediction => prediction, :match_id => match.id %>
           <% end %>
         </div>
-      </td>
-      <td class="">
-        <% match.channels.each do |channel| %>
-          <% if channel.image_url.present? %>
-            <%= image_tag channel.image_url %>
-          <% end %>
-        <% end %>
       </td>
     </tr>
     <% end %>
