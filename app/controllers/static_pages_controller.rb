@@ -11,6 +11,6 @@ class StaticPagesController < ApplicationController
   end
 
   def logs
-    @Logs = Log.last_logs
+    @Logs = Log.all_logs
   end
 end
