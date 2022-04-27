@@ -1,0 +1,11 @@
+version: '3'
+services:
+  rails-app:
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    image: euro2016-rails 
+    command: rails server 
+    ports:
+      - '3000:3000'
+    working_dir: /root 

@@ -30,14 +30,27 @@ $ bundle install --without production
 Next, migrate the database:
 
 ```
-$ rails db:migrate
+rake db:migrate
 ```
 
 And run server:
 
 ```
-$ rails server
+rails server
 ```
+
+## Update 2022
+
+Added `Dockerfile` in 2022 as it's not possible to run this app on newer OS because of some old dependencies.
+
+
+Managed to run this app and install dependencies on Debian 8 (jessie) with Ruby 2.1 and Node 12. See Dockerfile. To build the app using docker run:
+
+```
+sudo docker compose -up
+```
+
+Open http://0.0.0.0:3000/ to access the app.
 
 ## Screenshots
 
