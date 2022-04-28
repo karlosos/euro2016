@@ -47,10 +47,13 @@ Added `Dockerfile` in 2022 as it's not possible to run this app on newer OS beca
 Managed to run this app and install dependencies on Debian 8 (jessie) with Ruby 2.1 and Node 12. See Dockerfile. To build the app using docker run:
 
 ```
-sudo docker compose -up
+docker compose build
+docker­-compose run rails-app rake db:reset
+docker­-compose run rails-app rake db:migrate
+docker compose up
 ```
 
-Open http://0.0.0.0:3000/ to access the app.
+Open http://localhost:3000 to access the app.
 
 ## Screenshots
 
